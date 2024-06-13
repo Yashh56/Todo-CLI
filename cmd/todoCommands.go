@@ -30,7 +30,6 @@ var TodoCmd = &cobra.Command{
 		title := args[0]
 
 		if AddFlag {
-			// Add todo
 			todo := model.Model{
 				Title: title,
 			}
@@ -40,13 +39,12 @@ var TodoCmd = &cobra.Command{
 				log.Fatal(err)
 			}
 			fmt.Println(addTodo)
-		} else if RemoveAllFlag {
-			result, err := controllers.DeleteAllTodos()
+		} else if DeleteFlag {
+			result, err := controllers.DeleteTodo(title)
 			if err != nil {
 				log.Fatal(err)
 			}
 			fmt.Println(result)
-
 		} else if UpdateFlag {
 			result, err := controllers.UpdateTodo(title)
 			if err != nil {
@@ -217,12 +215,3 @@ var DeleteAllCmd = &cobra.Command{
 		fmt.Println(result)
 	},
 }
-
-// else if DeleteFlag {
-// 	// Delete todo
-// 	result, err := controllers.DeleteTodo(title)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	fmt.Println(result)
-// }
